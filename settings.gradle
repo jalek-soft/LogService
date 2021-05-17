@@ -1,0 +1,4 @@
+rootProject.name = "LogService"
+include ':app'
+include ':client-app'
+include ':aidl'

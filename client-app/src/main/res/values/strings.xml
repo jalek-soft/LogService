@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Log Client</string>
+    <string name="say_hello_to_mama">Say Hello to mama</string>
 </resources>

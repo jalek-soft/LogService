@@ -1,7 +1,9 @@
 package com.example.logservice
 
+import android.app.Application
 import android.app.Service
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
 
@@ -14,7 +16,9 @@ class LogService : Service() {
     val TAG = LogService::class.java.simpleName
 
     override fun onBind(intent: Intent?): IBinder {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Log.d(TAG, "Current process is " + Application.getProcessName())
+        }
         return object : ILogAIDLInterface.Stub() {
 
             override fun log(loglevel: String, message: String) {
@@ -42,6 +46,6 @@ class LogService : Service() {
 }
 
 fun Date.formatToServerTimeDefaults(): String{
-    val sdf= SimpleDateFormat("yy.MM.DD.hh.mm.ss", Locale.getDefault())
+    val sdf= SimpleDateFormat("yy.MM.dd.hh.mm.ss", Locale.getDefault())
     return sdf.format(this)
 }
